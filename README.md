@@ -1,1 +1,1 @@
-# confocal-system-for-refractive-index-measurement
+# Confocal system for refractive index measurement
