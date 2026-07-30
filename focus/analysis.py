@@ -75,8 +75,6 @@ def find_focused_frames(name, method, folder_name, text_name):
     focus_scores, frames = measure_focus(video, method)
     index_focused_frames = identify_peaks(focus_scores)
 
-    print(f"Los máximos están en los frames: {index_focused_frames}")
-
     methods = {"compute_tenengrand": "Tenengrand", "compute_sobel_variance": "SobelVariance",
               "compute_laplacian": "Laplacian"}
     function_name = method.__name__

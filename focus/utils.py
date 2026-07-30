@@ -34,10 +34,7 @@ def get_video_info(video)-> dict:
 
     return video_info
 
-def plot_focused_frames(frames, focused_index, method_name, folder_name):
-    #plot_individual_frames(frames[focused_index[0]], f"0_{focused_index[0]}", method_name, folder_name)
-    #plot_individual_frames(frames[focused_index[1]], f"1_{focused_index[1]}", method_name, folder_name)
-    
+def plot_focused_frames(frames, focused_index, method_name, folder_name): 
     fig, (ax1, ax2) = plt.subplots(1, 2)
     ax1.imshow(frames[focused_index[0]], cmap = "gray")
     ax2.imshow(frames[focused_index[1]], cmap = "gray")
@@ -48,8 +45,6 @@ def plot_focused_frames(frames, focused_index, method_name, folder_name):
     plt.suptitle(method_name)
     plt.tight_layout()
     fig.savefig(f"{folder_name}/{method_name}_resumen.png", dpi = 300, bbox_inches = "tight")
-    plt.show()
-
 
 def plot_individual_frames(frame, frame_index, method_name, folder_name):
     fig, ax = plt.subplots(1, 1)
