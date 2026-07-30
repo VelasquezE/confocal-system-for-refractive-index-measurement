@@ -61,13 +61,20 @@ def identify_peaks(focus_scores: np.ndarray) -> np.ndarray:
 
     return peaks
 
-def find_focused_frames(name, method, folder_name, text_name):
+def find_focused_frames(video_url, method, folder_name, text_name) -> np.ndarray:
     """
-    Gets the focus scores of the video, prints the peaks value, plots the individual frames, 
-    plots a summary graph, plots the scores.
+    Given the url of a video, returns the index of the best focused.
+    Also, temporary plots the individual focused frames, the scores, and writes the focused
+    frames indexes in the summary text file. 
+    frames.
+    Parameters:
+        video (cv2.VideoCapture object)
+    Returns:
+        index_focused_frames (np.ndarray): Array with the two indices
+        of the best focused frames. 
     """
     try:
-        video = utils.open_video(name)
+        video = utils.open_video(video_url)
         print("Video file opened successfully!")
     except FileNotFoundError as e:
         print("Error:", e)
@@ -81,7 +88,9 @@ def find_focused_frames(name, method, folder_name, text_name):
     method_name = methods[function_name]
 
     with open(text_name, "a", encoding = "utf-8") as file:
-        file.write(f"{method_name} seleccionó los frames {index_focused_frames} \n")
+        file.write(f"{method_name} seleccionó los frames {index_focused_frames} ")
     
     utils.plot_focused_frames(frames, index_focused_frames, method_name, folder_name)
     utils.plot_scores(focus_scores, method_name, folder_name)
+
+    return index_focused_frames
